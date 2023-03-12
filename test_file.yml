@@ -1,0 +1,36 @@
+# test_file.yml
+
+---
+- name: Create IPSec Tunnel with defined variable
+  hosts: palo
+  gather_facts: false
+  connection: local
+#  vars_files: vars.yml
+
+  vars:
+    provider:
+      ip_address: '{{ inventory_hostname }}'
+      username: '{{ fwusername }}'
+      password: '{{ fwpassword }}'
+
+  roles:
+    - role: PaloAltoNetworks.paloaltonetworks
+
+
+  vars_prompt:
+    - name: "fwusername"
+      prompt: "Firewall username"
+      private: no
+
+    - name: "fwpassword"
+      prompt: "Firewall password"
+      private: yes
+
+  tasks:
+  - name: Create tunnel.1
+    panos_tunnel:
+      provider: '{{ provider }}'
+      if_name: "tunnel.1"
+      vr_name: 'default'
+      zone_name: 'VPN_Test'
+      commit: False
