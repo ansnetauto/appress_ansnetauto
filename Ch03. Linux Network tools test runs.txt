@@ -1,0 +1,303 @@
+Table 3-5. Popular Linux Network Utilities
+Example command outputs from Ubuntu on WSL.
+-------------------------------------------------------------------------------------------
+jdoe@LP50BC:~$ ip address show
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: bond0: <BROADCAST,MULTICAST,MASTER> mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether ae:6e:e4:30:03:f7 brd ff:ff:ff:ff:ff:ff
+3: dummy0: <BROADCAST,NOARP> mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether e2:3f:19:fa:7d:c9 brd ff:ff:ff:ff:ff:ff
+4: tunl0@NONE: <NOARP> mtu 1480 qdisc noop state DOWN group default qlen 1000
+    link/ipip 0.0.0.0 brd 0.0.0.0
+5: sit0@NONE: <NOARP> mtu 1480 qdisc noop state DOWN group default qlen 1000
+    link/sit 0.0.0.0 brd 0.0.0.0
+6: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+    link/ether 00:15:5d:b5:20:b1 brd ff:ff:ff:ff:ff:ff
+    inet 172.18.213.243/20 brd 172.18.223.255 scope global eth0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::215:5dff:feb5:20b1/64 scope link
+       valid_lft forever preferred_lft forever
+-------------------------------------------------------------------------------------------
+jdoe@LP50BC:~$ sudo ifconfig eth0 down
+jdoe@LP50BC:~$ ifconfig
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 36  bytes 9533 (9.5 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 36  bytes 9533 (9.5 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+jdoe@LP50BC:~$ sudo ifconfig eth0 up
+jdoe@LP50BC:~$ ifconfig
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.18.213.243  netmask 255.255.240.0  broadcast 172.18.223.255
+        inet6 fe80::215:5dff:feb5:20b1  prefixlen 64  scopeid 0x20<link>
+        ether 00:15:5d:b5:20:b1  txqueuelen 1000  (Ethernet)
+        RX packets 94765  bytes 12068844 (12.0 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 186910  bytes 13617827 (13.6 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 36  bytes 9533 (9.5 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 36  bytes 9533 (9.5 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+-------------------------------------------------------------------------------------------
+jdoe@LP50BC:~$ netstat -a
+Active Internet connections (servers and established)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State
+tcp        0      0 localhost:2022          localhost:50920         ESTABLISHED
+tcp        0      0 localhost:50920         localhost:2022          ESTABLISHED
+udp        0      0 localhost:323           0.0.0.0:*
+udp6       0      0 ip6-localhost:323       [::]:*
+raw        0      0 0.0.0.0:255             0.0.0.0:*               7
+Active UNIX domain sockets (servers and established)
+Proto RefCnt Flags       Type       State         I-Node   Path
+unix  2      [ ACC ]     STREAM     LISTENING     18262    /run/WSL/1_interop
+unix  2      [ ACC ]     STREAM     LISTENING     19475    /run/WSL/1_interop
+unix  2      [ ACC ]     STREAM     LISTENING     1290     /run/WSL/9_interop
+unix  2      [ ACC ]     STREAM     LISTENING     18442    /var/run/dbus/system_bus_socket
+unix  2      [ ACC ]     SEQPACKET  LISTENING     19481    /mnt/wslg/weston-notify.sock
+unix  2      [ ACC ]     STREAM     LISTENING     188      /mnt/wslg/runtime-dir/wayland-0
+unix  2      [ ACC ]     STREAM     LISTENING     19483    /tmp/.X11-unix/X0
+unix  2      [ ]         DGRAM                    21515    /var/run/chrony/chronyd.sock
+unix  2      [ ACC ]     STREAM     LISTENING     21557    /mnt/wslg/runtime-dir/pulse/native
+unix  2      [ ACC ]     STREAM     LISTENING     19505    /mnt/wslg/PulseAudioRDPSource
+unix  2      [ ACC ]     STREAM     LISTENING     1301     /mnt/wslg/PulseAudioRDPSink
+unix  2      [ ACC ]     STREAM     LISTENING     1308     /mnt/wslg/PulseServer
+unix  2      [ ACC ]     STREAM     LISTENING     21529    /tmp/dbus-PbGpwcHEjY
+unix  3      [ ]         STREAM     CONNECTED     20330
+unix  3      [ ]         STREAM     CONNECTED     196      /mnt/wslg/PulseAudioRDPSink
+unix  3      [ ]         STREAM     CONNECTED     18257
+unix  3      [ ]         STREAM     CONNECTED     19501
+unix  3      [ ]         STREAM     CONNECTED     20674
+unix  3      [ ]         STREAM     CONNECTED     21564    /tmp/dbus-PbGpwcHEjY
+unix  2      [ ]         STREAM     CONNECTED     19493
+unix  2      [ ]         STREAM     CONNECTED     20318
+unix  3      [ ]         STREAM     CONNECTED     18256
+unix  3      [ ]         STREAM     CONNECTED     19500
+unix  3      [ ]         STREAM     CONNECTED     20675
+unix  3      [ ]         STREAM     CONNECTED     18443
+unix  3      [ ]         STREAM     CONNECTED     1285
+unix  3      [ ]         STREAM     CONNECTED     19499
+unix  3      [ ]         STREAM     CONNECTED     1274
+unix  3      [ ]         STREAM     CONNECTED     18444
+unix  3      [ ]         STREAM     CONNECTED     1304     /tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     19498
+unix  3      [ ]         STREAM     CONNECTED     1275
+unix  3      [ ]         STREAM     CONNECTED     20331
+unix  3      [ ]         STREAM     CONNECTED     1309
+unix  3      [ ]         STREAM     CONNECTED     18464
+-------------------------------------------------------------------------------------------
+jdoe@LP50BC:~$ ping 8.8.8.8 -c 4
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=116 time=11.8 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=116 time=11.2 ms
+64 bytes from 8.8.8.8: icmp_seq=3 ttl=116 time=10.8 ms
+64 bytes from 8.8.8.8: icmp_seq=4 ttl=116 time=11.2 ms
+
+--- 8.8.8.8 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3006ms
+rtt min/avg/max/mdev = 10.839/11.267/11.793/0.340 ms
+jdoe@LP50BC:~$ ping www.google.com -c 4
+PING www.google.com (142.251.221.68) 56(84) bytes of data.
+64 bytes from syd09s31-in-f4.1e100.net (142.251.221.68): icmp_seq=1 ttl=116 time=11.3 ms
+64 bytes from syd09s31-in-f4.1e100.net (142.251.221.68): icmp_seq=2 ttl=116 time=12.2 ms
+64 bytes from syd09s31-in-f4.1e100.net (142.251.221.68): icmp_seq=3 ttl=116 time=10.9 ms
+64 bytes from syd09s31-in-f4.1e100.net (142.251.221.68): icmp_seq=4 ttl=116 time=16.0 ms
+
+--- www.google.com ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3005ms
+rtt min/avg/max/mdev = 10.896/12.615/16.041/2.030 ms
+-------------------------------------------------------------------------------------------
+jdoe@LP50BC:~$ traceroute www.tesla.com
+traceroute to e1792.dscx.akamaiedge.net (104.80.232.102), 64 hops max
+  1   172.18.208.1  0.340ms  0.298ms  0.268ms
+  2   192.168.0.1  1.432ms  0.732ms  1.051ms
+  3   58.162.26.75  8.613ms  4.843ms  14.108ms
+  4   203.46.69.44  9.590ms  9.925ms  8.708ms
+  5   203.46.69.45  27.407ms  25.246ms  13.193ms
+  6   104.80.232.102  9.347ms  14.827ms  8.459ms
+-------------------------------------------------------------------------------------------
+jdoe@LP50BC:~$ sudo tcpdump -i eth0
+tcpdump: verbose output suppressed, use -v[v]... for full protocol decode
+listening on eth0, link-type EN10MB (Ethernet), snapshot length 262144 bytes
+20:54:36.691530 IP LP50BC.netbios-dgm > 172.18.223.255.netbios-dgm: UDP, length 201
+20:54:36.742990 IP 172.18.213.243.43375 > LP50BC.domain: 1065+ PTR? 255.223.18.172.in-addr.arpa. (45)
+20:54:36.745356 IP LP50BC.mdns > 224.0.0.251.mdns: 0 PTR (QM)? 255.223.18.172.in-addr.arpa.local. (51)
+20:54:36.746954 IP6 LP50BC.mdns > ff02::fb.mdns: 0 PTR (QM)? 255.223.18.172.in-addr.arpa.local. (51)
+20:54:36.748344 IP LP50BC.mdns > 224.0.0.251.mdns: 0 PTR (QM)? 255.223.18.172.in-addr.arpa.local. (51)
+20:54:36.749546 IP6 LP50BC.mdns > ff02::fb.mdns: 0 PTR (QM)? 255.223.18.172.in-addr.arpa.local. (51)
+20:54:37.754154 IP LP50BC.mdns > 224.0.0.251.mdns: 0 PTR (QM)? 255.223.18.172.in-addr.arpa.local. (51)
+20:54:37.755466 IP6 LP50BC.mdns > ff02::fb.mdns: 0 PTR (QM)? 255.223.18.172.in-addr.arpa.local. (51)
+20:54:37.756673 IP LP50BC.mdns > 224.0.0.251.mdns: 0 PTR (QM)? 255.223.18.172.in-addr.arpa.local. (51)
+20:54:37.757647 IP6 LP50BC.mdns > ff02::fb.mdns: 0 PTR (QM)? 255.223.18.172.in-addr.arpa.local. (51)
+20:54:37.760519 IP LP50BC.domain > 172.18.213.243.43375: 1065 NXDomain* 0/0/0 (45)
+20:54:37.760738 IP 172.18.213.243.59223 > LP50BC.domain: 45487+ PTR? 1.208.18.172.in-addr.arpa. (43)
+20:54:37.760816 IP LP50BC.domain > 172.18.213.243.43375: 1065 NXDomain* 0/0/0 (45)
+20:54:37.760830 IP 172.18.213.243 > LP50BC: ICMP 172.18.213.243 udp port 43375 unreachable, length 81
+20:54:37.765971 IP LP50BC.mdns > 224.0.0.251.mdns: 0 PTR (QM)? 1.208.18.172.in-addr.arpa.local. (49)
+20:54:37.767158 IP6 LP50BC.mdns > ff02::fb.mdns: 0 PTR (QM)? 1.208.18.172.in-addr.arpa.local. (49)
+20:54:38.775981 IP LP50BC.mdns > 224.0.0.251.mdns: 0 PTR (QM)? 1.208.18.172.in-addr.arpa.local. (49)
+20:54:38.777923 IP6 LP50BC.mdns > ff02::fb.mdns: 0 PTR (QM)? 1.208.18.172.in-addr.arpa.local. (49)
+20:54:38.778847 IP LP50BC.domain > 172.18.213.243.59223: 45487- 1/0/0 PTR LP50BC. (88)
+20:54:38.779274 IP 172.18.213.243.45570 > LP50BC.domain: 38707+ PTR? 243.213.18.172.in-addr.arpa. (45)
+20:54:38.783129 IP LP50BC.mdns > 224.0.0.251.mdns: 0 PTR (QM)? 243.213.18.172.in-addr.arpa.local. (51)
+20:54:38.785069 IP6 LP50BC.mdns > ff02::fb.mdns: 0 PTR (QM)? 243.213.18.172.in-addr.arpa.local. (51)
+20:54:38.787463 IP LP50BC.mdns > 224.0.0.251.mdns: 0 PTR (QM)? 243.213.18.172.in-addr.arpa.local. (51)
+20:54:38.789895 IP6 LP50BC.mdns > ff02::fb.mdns: 0 PTR (QM)? 243.213.18.172.in-addr.arpa.local. (51)
+20:54:39.792399 IP LP50BC.mdns > 224.0.0.251.mdns: 0 PTR (QM)? 243.213.18.172.in-addr.arpa.local. (51)
+20:54:39.793989 IP6 LP50BC.mdns > ff02::fb.mdns: 0 PTR (QM)? 243.213.18.172.in-addr.arpa.local. (51)
+20:54:39.795386 IP LP50BC.mdns > 224.0.0.251.mdns: 0 PTR (QM)? 243.213.18.172.in-addr.arpa.local. (51)
+20:54:39.796746 IP6 LP50BC.mdns > ff02::fb.mdns: 0 PTR (QM)? 243.213.18.172.in-addr.arpa.local. (51)
+20:54:39.800025 IP LP50BC.domain > 172.18.213.243.45570: 38707 NXDomain* 0/0/0 (45)
+20:54:39.800292 IP LP50BC.domain > 172.18.213.243.45570: 38707 NXDomain* 0/0/0 (45)
+20:54:39.800324 IP 172.18.213.243 > LP50BC: ICMP 172.18.213.243 udp port 45570 unreachable, length 81
+20:54:39.803006 IP 172.18.213.243.38373 > LP50BC.domain: 35147+ PTR? 251.0.0.224.in-addr.arpa. (42)
+20:54:39.805253 IP LP50BC.mdns > 224.0.0.251.mdns: 0 PTR (QM)? 251.0.0.224.in-addr.arpa.local. (48)
+20:54:39.806668 IP6 LP50BC.mdns > ff02::fb.mdns: 0 PTR (QM)? 251.0.0.224.in-addr.arpa.local. (48)
+20:54:39.820819 IP LP50BC.mdns > 224.0.0.251.mdns: 0 PTR (QM)? 251.0.0.224.in-addr.arpa.local. (48)
+20:54:39.821979 IP6 LP50BC.mdns > ff02::fb.mdns: 0 PTR (QM)? 251.0.0.224.in-addr.arpa.local. (48)
+20:54:40.764700 IP LP50BC.domain > 172.18.213.243.43375: 1065 NXDomain* 0/0/0 (45)
+20:54:40.764725 IP 172.18.213.243 > LP50BC: ICMP 172.18.213.243 udp port 43375 unreachable, length 81
+20:54:40.765056 IP LP50BC.domain > 172.18.213.243.43375: 1065 NXDomain* 0/0/0 (45)
+20:54:40.765064 IP 172.18.213.243 > LP50BC: ICMP 172.18.213.243 udp port 43375 unreachable, length 81
+20:54:40.811563 IP LP50BC.mdns > 224.0.0.251.mdns: 0 PTR (QM)? 251.0.0.224.in-addr.arpa.local. (48)
+20:54:40.812549 IP6 LP50BC.mdns > ff02::fb.mdns: 0 PTR (QM)? 251.0.0.224.in-addr.arpa.local. (48)
+20:54:40.827449 IP LP50BC.mdns > 224.0.0.251.mdns: 0 PTR (QM)? 251.0.0.224.in-addr.arpa.local. (48)
+20:54:40.828553 IP6 LP50BC.mdns > ff02::fb.mdns: 0 PTR (QM)? 251.0.0.224.in-addr.arpa.local. (48)
+20:54:40.830957 IP LP50BC.domain > 172.18.213.243.38373: 35147 NXDomain 0/0/0 (42)
+20:54:40.831166 IP LP50BC.domain > 172.18.213.243.38373: 35147 NXDomain 0/0/0 (42)
+20:54:40.831199 IP 172.18.213.243 > LP50BC: ICMP 172.18.213.243 udp port 38373 unreachable, length 78
+20:54:40.831261 IP 172.18.213.243.47996 > LP50BC.domain: 56991+ PTR? b.f.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.2.0.f.f.ip6.arpa. (90)
+20:54:40.833546 IP LP50BC.mdns > 224.0.0.251.mdns: 0 PTR (QM)? b.f.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.2.0.f.f.ip6.arpa.local. (96)
+20:54:40.834853 IP6 LP50BC.mdns > ff02::fb.mdns: 0 PTR (QM)? b.f.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.2.0.f.f.ip6.arpa.local. (96)
+20:54:40.846006 IP LP50BC.mdns > 224.0.0.251.mdns: 0 PTR (QM)? b.f.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.2.0.f.f.ip6.arpa.local. (96)
+20:54:40.847178 IP6 LP50BC.mdns > ff02::fb.mdns: 0 PTR (QM)? b.f.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.2.0.f.f.ip6.arpa.local. (96)
+20:54:41.790430 ARP, Request who-has LP50BC tell 172.18.213.243, length 28
+20:54:41.790816 ARP, Reply LP50BC is-at 00:15:5d:33:51:e7 (oui Unknown), length 28
+20:54:43.766998 IP LP50BC.domain > 172.18.213.243.43375: 1065 NXDomain* 0/0/0 (45)
+20:54:43.767014 IP 172.18.213.243 > LP50BC: ICMP 172.18.213.243 udp port 43375 unreachable, length 81
+20:54:43.767158 IP LP50BC.domain > 172.18.213.243.43375: 1065 NXDomain* 0/0/0 (45)
+20:54:43.767165 IP 172.18.213.243 > LP50BC: ICMP 172.18.213.243 udp port 43375 unreachable, length 81
+20:54:43.844823 IP LP50BC.domain > 172.18.213.243.38373: 35147 NXDomain 0/0/0 (42)
+20:54:43.844840 IP 172.18.213.243 > LP50BC: ICMP 172.18.213.243 udp port 38373 unreachable, length 78
+20:54:43.844998 IP LP50BC.domain > 172.18.213.243.38373: 35147 NXDomain 0/0/0 (42)
+20:54:44.875004 IP LP50BC.domain > 172.18.213.243.47996: 56991 NXDomain 0/0/0 (90)
+20:54:44.875036 IP 172.18.213.243 > LP50BC: ICMP 172.18.213.243 udp port 47996 unreachable, length 126
+20:54:44.875738 IP LP50BC.domain > 172.18.213.243.47996: 56991 NXDomain 0/0/0 (90)
+20:54:45.815401 IP LP50BC.domain > 172.18.213.243.45570: 38707 NXDomain* 0/0/0 (45)
+20:54:45.815435 IP 172.18.213.243 > LP50BC: ICMP 172.18.213.243 udp port 45570 unreachable, length 81
+20:54:45.816280 IP LP50BC.domain > 172.18.213.243.45570: 38707 NXDomain* 0/0/0 (45)
+20:54:46.768154 IP LP50BC.domain > 172.18.213.243.43375: 1065 NXDomain* 0/0/0 (45)
+20:54:46.768985 IP LP50BC.domain > 172.18.213.243.43375: 1065 NXDomain* 0/0/0 (45)
+20:54:46.847168 IP LP50BC.domain > 172.18.213.243.38373: 35147 NXDomain 0/0/0 (42)
+20:54:46.847204 IP 172.18.213.243 > LP50BC: ICMP 172.18.213.243 udp port 38373 unreachable, length 78
+20:54:46.847962 IP LP50BC.domain > 172.18.213.243.38373: 35147 NXDomain 0/0/0 (42)
+20:54:47.878729 IP LP50BC.domain > 172.18.213.243.47996: 56991 NXDomain 0/0/0 (90)
+20:54:47.878773 IP 172.18.213.243 > LP50BC: ICMP 172.18.213.243 udp port 47996 unreachable, length 126
+20:54:47.879670 IP LP50BC.domain > 172.18.213.243.47996: 56991 NXDomain 0/0/0 (90)
+20:54:48.826132 IP LP50BC.domain > 172.18.213.243.45570: 38707 NXDomain* 0/0/0 (45)
+20:54:48.826168 IP 172.18.213.243 > LP50BC: ICMP 172.18.213.243 udp port 45570 unreachable, length 81
+20:54:48.827068 IP LP50BC.domain > 172.18.213.243.45570: 38707 NXDomain* 0/0/0 (45)
+20:54:49.857498 IP LP50BC.domain > 172.18.213.243.38373: 35147 NXDomain 0/0/0 (42)
+20:54:49.857534 IP 172.18.213.243 > LP50BC: ICMP 172.18.213.243 udp port 38373 unreachable, length 78
+20:54:49.858314 IP LP50BC.domain > 172.18.213.243.38373: 35147 NXDomain 0/0/0 (42)
+20:54:50.887884 IP LP50BC.domain > 172.18.213.243.47996: 56991 NXDomain 0/0/0 (90)
+20:54:50.887900 IP 172.18.213.243 > LP50BC: ICMP 172.18.213.243 udp port 47996 unreachable, length 126
+20:54:50.888481 IP LP50BC.domain > 172.18.213.243.47996: 56991 NXDomain 0/0/0 (90)
+20:54:56.348297 IP LP50BC.mdns > 224.0.0.251.mdns: 0 PTR (QU)? _microsoft_mcc._tcp.local. (43)
+20:54:56.351238 IP6 LP50BC.mdns > ff02::fb.mdns: 0 PTR (QU)? _microsoft_mcc._tcp.local. (43)
+20:54:57.357721 IP LP50BC.mdns > 224.0.0.251.mdns: 0 PTR (QM)? _microsoft_mcc._tcp.local. (43)
+20:54:57.360412 IP6 LP50BC.mdns > ff02::fb.mdns: 0 PTR (QM)? _microsoft_mcc._tcp.local. (43)
+^Z
+[1]+  Stopped                 sudo tcpdump -i eth0
+-------------------------------------------------------------------------------------------
+jdoe@LP50BC:~$ dig www.testla.com
+
+; <<>> DiG 9.18.1-1ubuntu1.2-Ubuntu <<>> www.testla.com
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 20634
+;; flags: qr rd ad; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 0
+;; WARNING: recursion requested but not available
+
+;; QUESTION SECTION:
+;www.testla.com.                        IN      A
+
+;; ANSWER SECTION:
+www.testla.com.         0       IN      CNAME   testla.com.
+testla.com.             0       IN      A       34.102.136.180
+
+;; Query time: 479 msec
+;; SERVER: 172.18.208.1#53(172.18.208.1) (UDP)
+;; WHEN: Tue Apr 11 20:57:22 AEST 2023
+;; MSG SIZE  rcvd: 96
+-------------------------------------------------------------------------------------------
+jdoe@LP50BC:~$ sudo nmap 192.168.0.83 -A
+Starting Nmap 7.80 ( https://nmap.org ) at 2023-04-11 20:31 AEST
+Nmap scan report for LP50BC.modem (192.168.0.83)
+Host is up (0.00067s latency).
+Not shown: 993 filtered ports
+PORT     STATE SERVICE         VERSION
+135/tcp  open  msrpc           Microsoft Windows RPC
+139/tcp  open  netbios-ssn     Microsoft Windows netbios-ssn
+445/tcp  open  microsoft-ds?
+902/tcp  open  ssl/vmware-auth VMware Authentication Daemon 1.10 (Uses VNC, SOAP)
+912/tcp  open  vmware-auth     VMware Authentication Daemon 1.0 (Uses VNC, SOAP)
+2179/tcp open  vmrdp?
+5357/tcp open  http            Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-server-header: Microsoft-HTTPAPI/2.0
+|_http-title: Service Unavailable
+Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
+Device type: general purpose
+Running (JUST GUESSING): Microsoft Windows 10 (86%)
+OS CPE: cpe:/o:microsoft:windows_10
+Aggressive OS guesses: Microsoft Windows 10 (86%)
+No exact OS matches for host (test conditions non-ideal).
+Network Distance: 2 hops
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_nbstat: NetBIOS name: LP50BC, NetBIOS user: <unknown>, NetBIOS MAC: c8:5b:76:e0:3d:3a (Lcfc(hefei) Electronics Technology)
+| smb2-security-mode:
+|   2.02:
+|_    Message signing enabled but not required
+| smb2-time:
+|   date: 2023-04-11T10:31:40
+|_  start_date: N/A
+
+TRACEROUTE (using port 139/tcp)
+HOP RTT     ADDRESS
+1   0.55 ms LP50BC (172.18.208.1)
+2   0.52 ms LP50BC.modem (192.168.0.83)
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 121.15 seconds
+
+-------------------------------------------------------------------------------------------
+jdoe@LP50BC:~$ sudo route -n
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         172.18.208.1    0.0.0.0         UG    0      0        0 eth0
+172.18.208.0    0.0.0.0         255.255.240.0   U     0      0        0 eth0
+-------------------------------------------------------------------------------------------
+jdoe@LP50BC:~$ sudo service ssh start
+ * Starting OpenBSD Secure Shell server sshd                                                                     [ OK ]
+jdoe@LP50BC:~$ sudo ss -t -a
+State        Recv-Q       Send-Q               Local Address:Port                Peer Address:Port        Process
+LISTEN       0            128                        0.0.0.0:2022                     0.0.0.0:*
+ESTAB        0            0                        127.0.0.1:2022                   127.0.0.1:50920
+ESTAB        0            0                        127.0.0.1:50920                  127.0.0.1:2022
+LISTEN       0            128                           [::]:2022                        [::]:*
