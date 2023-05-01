@@ -1,7 +1,7 @@
 import difflib
 
 # File names variables
-file01 = "httpd.conf .bak"
+file01 = "httpd.conf.bak"
 file02 = "httpd.conf"
 
 # Read the contents of the first file
