@@ -1,0 +1,75 @@
+================ r1 ====================================
+!
+config t
+!
+interface GigabitEthernet0/1
+ip address 1.1.123.1 255.255.255.0
+no shutdown
+!
+interface GigabitEthernet0/3
+ip address 1.1.10.1 255.255.255.0
+no shutdown
+!
+router ospf 1
+router-id 1.1.1.1
+network 1.1.10.1 0.0.0.0 area 0
+network 1.1.123.1 0.0.0.0 area 0
+!
+================ r2 ====================================
+!
+config t
+!
+interface GigabitEthernet0/1
+ip address 1.1.123.2 255.255.255.0
+no shutdown
+!
+interface GigabitEthernet0/2
+ip address 1.1.24.2 255.255.255.0
+no shutdown
+!
+exit
+!
+router ospf 1
+router-id 2.2.2.2
+network 1.1.123.2 0.0.0.0 area 0
+network 1.1.24.1 0.0.0.0 area 1
+!
+================ r3 ====================================
+!
+config t
+!
+interface GigabitEthernet0/1
+ip address 1.1.123.3 255.255.255.0
+no shutdown
+!
+interface GigabitEthernet0/2
+ip address 1.1.34.3 255.255.255.0
+no shutdown
+!
+router ospf 1
+router-id 3.3.3.3
+network 1.1.123.3 0.0.0.0 area 0
+network 1.1.34.3 0.0.0.0 area 1
+!
+================ r4 ====================================
+!
+config t
+!
+interface GigabitEthernet0/1
+ip address 1.1.24.4 255.255.255.0
+no shutdown
+!
+interface GigabitEthernet0/2
+ip address 1.1.34.4 255.255.255.0
+no shutdown
+!
+interface GigabitEthernet0/3
+ip address 1.1.40.4 255.255.255.0
+no shutdown
+!
+router ospf 1
+router-id 4.4.4.4
+network 1.1.24.4 0.0.0.0 area 1
+network 1.1.34.4 0.0.0.0 area 1
+network 1.1.40.4 0.0.0.0 area 1
+!
