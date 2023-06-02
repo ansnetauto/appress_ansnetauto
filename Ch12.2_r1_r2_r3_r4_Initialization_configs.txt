@@ -1,0 +1,144 @@
+=========================== r1 initial config ============================
+!
+conf t
+hostname r1
+!
+ip domain name ansnetauto.net
+ip name-server 192.168.127.2
+!
+username jdoe privilege 15 secret 5uper5cret9assw0rd
+!
+no ip http server
+no ip http secure-server
+ip route 0.0.0.0 0.0.0.0 192.168.127.2
+!
+line vty 0 15
+login local
+transport input ssh
+logging synchronous
+exit
+!
+interface GigabitEthernet0/0
+ip address 192.168.127.11 255.255.255.0
+no shut
+!
+!
+exit
+!
+crypto key generate rsa
+1024
+ip ssh time-out 60
+ip ssh authentication-retries 2
+exit
+!
+write memory
+!
+!
+=========================== r2 initial config ============================
+!
+conf t
+hostname r2
+!
+ip domain name ansnetauto.net
+ip name-server 192.168.127.2
+!
+username jdoe privilege 15 secret 5uper5cret9assw0rd
+!
+no ip http server
+no ip http secure-server
+ip route 0.0.0.0 0.0.0.0 192.168.127.2
+!
+line vty 0 15
+login local
+transport input ssh
+logging synchronous
+exit
+!
+interface GigabitEthernet0/0
+ip address 192.168.127.12 255.255.255.0
+no shut
+!
+!
+exit
+!
+crypto key generate rsa
+1024
+ip ssh time-out 60
+ip ssh authentication-retries 2
+exit
+!
+write memory
+!
+!
+=========================== r3 initial config ============================
+!
+conf t
+hostname r3
+!
+ip domain name ansnetauto.net
+ip name-server 192.168.127.2
+!
+username jdoe privilege 15 secret 5uper5cret9assw0rd
+!
+no ip http server
+no ip http secure-server
+ip route 0.0.0.0 0.0.0.0 192.168.127.2
+!
+line vty 0 15
+login local
+transport input ssh
+logging synchronous
+exit
+!
+interface GigabitEthernet0/0
+ip address 192.168.127.13 255.255.255.0
+no shut
+!
+!
+exit
+!
+crypto key generate rsa
+1024
+ip ssh time-out 60
+ip ssh authentication-retries 2
+exit
+!
+write memory
+!
+!
+=========================== r4 initial config ============================
+!
+conf t
+hostname r4
+!
+ip domain name ansnetauto.net
+ip name-server 192.168.127.2
+!
+username jdoe privilege 15 secret 5uper5cret9assw0rd
+!
+no ip http server
+no ip http secure-server
+ip route 0.0.0.0 0.0.0.0 192.168.127.2
+!
+line vty 0 15
+login local
+transport input ssh
+logging synchronous
+exit
+!
+interface GigabitEthernet0/0
+ip address 192.168.127.14 255.255.255.0
+no shut
+!
+!
+exit
+!
+crypto key generate rsa
+1024
+ip ssh time-out 60
+ip ssh authentication-retries 2
+exit
+!
+write memory
+!
+!
