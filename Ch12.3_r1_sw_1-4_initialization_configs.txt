@@ -1,0 +1,108 @@
+!r1 configuration
+!
+configure terminal
+hostname r1
+!
+username jdoe privilege 15 secret 5uper5cret9assw0rd
+!
+ip domain-name ansnetauto.net
+crypto key generate rsa
+1024
+!
+line vty 0 15
+login local
+transport input ssh
+logging synchronous
+!
+interface Gi0/0
+ip address 192.168.127.11 255.255.255.0
+no shutdown
+!
+------------------------------------------------------------
+!sw1 configuration
+!
+enable
+configure terminal
+hostname sw1
+!
+username jdoe privilege 15 secret 5uper5cret9assw0rd
+!
+ip domain-name ansnetauto.net
+crypto key generate rsa
+1024
+!
+line vty 0 15
+login local
+transport input ssh
+logging synchronous
+!
+interface vlan 1
+ip address 192.168.127.21 255.255.255.0
+no shutdown
+!
+------------------------------------------------------------
+!sw2 configuration
+!
+enable
+configure terminal
+hostname sw2
+!
+username jdoe privilege 15 secret 5uper5cret9assw0rd
+!
+ip domain-name ansnetauto.net
+crypto key generate rsa
+1024
+!
+line vty 0 15
+login local
+transport input ssh
+logging synchronous
+!
+interface vlan 1
+ip address 192.168.127.22 255.255.255.0
+no shutdown
+!
+------------------------------------------------------------
+!sw3 configuration
+!
+enable
+configure terminal
+hostname sw3
+!
+username jdoe privilege 15 secret 5uper5cret9assw0rd
+!
+ip domain-name ansnetauto.net
+crypto key generate rsa
+1024
+!
+line vty 0 15
+login local
+transport input ssh
+logging synchronous
+!
+interface vlan 1
+ip address 192.168.127.23 255.255.255.0
+no shutdown
+!
+------------------------------------------------------------
+!sw4 configuration
+!
+enable
+configure terminal
+hostname sw4
+!
+username jdoe privilege 15 secret 5uper5cret9assw0rd
+!
+ip domain-name ansnetauto.net
+crypto key generate rsa
+1024
+!
+line vty 0 15
+login local
+transport input ssh
+logging synchronous
+!
+interface vlan 1
+ip address 192.168.127.24 255.255.255.0
+no shutdown
+!
