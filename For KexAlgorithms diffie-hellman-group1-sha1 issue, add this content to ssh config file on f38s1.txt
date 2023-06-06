@@ -1,0 +1,21 @@
+# [jdoe@f38s1 ch13]$ cat ~/.ssh/config
+Host 192.168.127.11
+    HostkeyAlgorithms +ssh-rsa
+
+Host 192.168.127.12
+    HostkeyAlgorithms +ssh-rsa
+
+Host 192.168.127.21
+    HostkeyAlgorithms +ssh-rsa
+
+Host 192.168.127.22
+    HostkeyAlgorithms +ssh-rsa
+
+Host 192.168.127.151
+    KexAlgorithms +diffie-hellman-group1-sha1
+
+Host 192.168.127.161
+    KexAlgorithms +diffie-hellman-group1-sha1
+
+Host 192.168.127.162
+    KexAlgorithms +diffie-hellman-group1-sha1
